@@ -8,7 +8,7 @@ setDefaultTimeout(60 * 1000 * 2);
 
 BeforeAll(async function () {
   try {
-    browser = await chromium.launch({ headless: false });
+    browser = await chromium.launch({ headless: true });
     page = await browser.newPage();
     pageFixture.page = page;
   } catch (error) {
@@ -17,7 +17,7 @@ BeforeAll(async function () {
   }
 });
 
-// AfterAll(async function () {
-//   await page.close();
-//   await browser.close();
-// });
+AfterAll(async function () {
+  await page.close();
+  await browser.close();
+});

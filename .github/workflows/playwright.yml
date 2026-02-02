@@ -18,4 +18,6 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
-        run: HEADLESS=true npx cucumber-js
+        run: npx cucumber-js
+        env:
+          HEADLESS: "true"
