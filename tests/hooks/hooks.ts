@@ -7,9 +7,14 @@ let browser: Browser;
 setDefaultTimeout(60 * 1000 * 2);
 
 BeforeAll(async function () {
-  browser = await chromium.launch({ headless: false });
-  page = await browser.newPage();
-  pageFixture.page = page;
+  try {
+    browser = await chromium.launch({ headless: false });
+    page = await browser.newPage();
+    pageFixture.page = page;
+  } catch (error) {
+    console.error("BeforeAll hook failed:", error);
+    throw error;
+  }
 });
 
 AfterAll(async function () {

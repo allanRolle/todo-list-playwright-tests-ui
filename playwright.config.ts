@@ -12,6 +12,7 @@ import { defineConfig, devices } from "@playwright/test";
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  timeout: 30000,
   testDir: "./tests",
   tsconfig: "./tsconfig.json",
   /* Run tests in files in parallel */
