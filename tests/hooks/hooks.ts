@@ -17,7 +17,7 @@ BeforeAll(async function () {
   }
 });
 
-AfterAll(async function () {
-  await page.close();
-  await browser.close();
-});
+// AfterAll(async function () {
+//   await page.close();
+//   await browser.close();
+// });
