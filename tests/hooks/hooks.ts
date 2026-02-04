@@ -1,23 +1,23 @@
-import { AfterAll, BeforeAll, setDefaultTimeout } from "@cucumber/cucumber";
-import { Browser, chromium, Page } from "@playwright/test";
-import { pageFixture } from "./pageFixture";
+import { After, Before, ITestCaseHookParameter, setDefaultTimeout, Status } from "@cucumber/cucumber";
+import { CustomWorld } from "../support/custom-world";
 
-let page: Page;
-let browser: Browser;
 setDefaultTimeout(60 * 1000 * 2);
 
-BeforeAll(async function () {
+Before(async function (this: CustomWorld) {
   try {
-    browser = await chromium.launch({ headless: true });
-    page = await browser.newPage();
-    pageFixture.page = page;
+    await this.init();
   } catch (error) {
     console.error("BeforeAll hook failed:", error);
     throw error;
   }
 });
 
-AfterAll(async function () {
-  await page.close();
-  await browser.close();
+After(async function (this: CustomWorld, { result }: ITestCaseHookParameter) {
+  if (result?.status === Status.FAILED) {
+    const screenshot = await this.page?.screenshot();
+    if (screenshot) {
+      await this.attach(screenshot, 'image/png');
+    }
+  }
+  await this.cleanup();
 });
