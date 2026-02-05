@@ -15,6 +15,6 @@ When(`I enter a todo`, async function (this: CustomWorld) {
 Then(`I should see the new todo`, async function (this: CustomWorld) {
   await this.todoPage.sectionList;
   await expect(this.todoPage.sectionList).toBeTruthy();
-  await expect(this.todoPage.todoItem).toHaveCount(1);
-  await expect(this.todoPage.todoCount).toContainText("1 item left");
+  await this.todoPage.checkTodoCount(this.todoPage.todoItem, 1);
+  await this.todoPage.checkContainsText(this.todoPage.todoCount, "1 item left");
 });

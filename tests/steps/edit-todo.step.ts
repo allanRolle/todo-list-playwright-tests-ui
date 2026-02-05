@@ -1,5 +1,4 @@
 import { Given, When, Then } from "@cucumber/cucumber";
-import { expect } from "@playwright/test";
 import { CustomWorld } from "../support/custom-world";
 
 Given(`A todo has been added`, async function (this: CustomWorld) {
@@ -12,5 +11,5 @@ When(`I edit a todo`, async function(this: CustomWorld){
 });
 
 Then(`I should see the updated todo`, async function(this: CustomWorld) {
-    await expect(this.todoPage.todoItemBody).toContainText('A second todo');
+    await this.todoPage.checkContainsText(this.todoPage.todoItemBody, 'A second todo');
 });
