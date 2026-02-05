@@ -6,3 +6,9 @@ Feature: CRUD actions with the todos
   Scenario: Add a todo
     When I enter a todo
     Then I should see the new todo
+
+  Scenario: Edit a todo
+
+    Given A todo has been added
+    When I edit a todo
+    Then I should see the updated todo

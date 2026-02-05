@@ -5,14 +5,17 @@ export class TodoPage {
     readonly mainInput: Locator;
     readonly sectionList: Locator;
     readonly todoItem: Locator;
+    readonly todoItemBody: Locator;
     readonly footer: Locator;
     readonly todoCount: Locator;
+
     
     constructor(page:Page) {
         this.page = page;
         this.mainInput = this.page.locator('[data-test="app-main-input"]');
         this.sectionList = this.page.locator(".section_list");
         this.todoItem = this.page.locator("[data-test='app-todo-item']");
+        this.todoItemBody = this.page.locator("[data-test='app-todo-item-body']");
         this.footer = this.page.locator(".footer_infos-wrapper");
         this.todoCount = this.page.locator("[data-test='app-footer-todo-count']");
     }
