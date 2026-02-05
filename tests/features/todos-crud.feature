@@ -12,3 +12,8 @@ Feature: CRUD actions with the todos
     Given A todo has been added
     When I edit a todo
     Then I should see the updated todo
+
+  Scenario: Delete a todo
+    Given A todo has been added
+    When  I click on the delete button
+    Then  The todo should be deleted  
